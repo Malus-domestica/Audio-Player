@@ -1,83 +1,82 @@
-import 'dart:convert';
-import 'package:audioplayers/audioplayers.dart';
-// import 'package:flutter/cupertino.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
-class AudioFile extends StatefulWidget {
-  final AudioPlayer advancedPlayer;
-  const AudioFile({Key? key, required this.advancedPlayer}) : super(key: key);
+class AudioPlayerAsset extends StatefulWidget {
+  final String path;
+  const AudioPlayerAsset({required this.path, Key? key}) : super(key: key);
 
   @override
-  State<AudioFile> createState() => _AudioFileState();
+  State<AudioPlayerAsset> createState() => AudioPlayerAssetState();
 }
 
-class _AudioFileState extends State<AudioFile> {
-  Duration _duration = new Duration();
-  Duration _position = new Duration();
-  // final String path =
-  //     'https://soundcloud.com/allmusicen/otis-mcdonald-not-for-nothing?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing';
-  final String path = "sound/myMusic.mp3";
-  bool isPlaying = false;
-  bool isPaused = false;
-  bool isLooping = false;
-  final List<IconData> _icons = [
-    Icons.play_circle_fill,
-    Icons.pause_circle_filled,
-  ];
+class AudioPlayerAssetState extends State<AudioPlayerAsset> {
+  final AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
 
   @override
   void initState() {
     super.initState();
-    this.widget.advancedPlayer.onDurationChanged.listen((d) {
-      setState(() {
-        _duration = d;
-      });
-    });
-    this.widget.advancedPlayer.onPositionChanged.listen((p) {
-      setState(() {
-        _position = p;
-      });
-    });
-
-    this.widget.advancedPlayer.setSourceAsset(path);
+    setupPlaylist();
   }
 
-  Widget btnStart() {
-    return IconButton(
-      padding: EdgeInsets.only(bottom: 10),
-      icon: Icon(_icons[0]),
-      onPressed: () {
-        this.widget.advancedPlayer.play(UrlSource(path));
-      },
-    );
+  setupPlaylist() async {
+    await audioPlayer.open(Audio(this.widget.path), autoStart: false);
   }
 
-  Widget loadAsset() {
-    return Container(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          btnStart(),
-        ],
-      ),
+  @override
+  void dispose() {
+    super.dispose();
+    audioPlayer.dispose();
+  }
+
+  Widget circularAudioPalyer(
+      RealtimePlayingInfos realtimePlayingInfos, double screenwidth) {
+    Color primaryColor = Colors.amber;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(height: 80),
+        CircularPercentIndicator(
+          radius: screenwidth / 4,
+          arcType: ArcType.HALF,
+          progressColor: Colors.white,
+          percent: realtimePlayingInfos.currentPosition.inSeconds /
+              realtimePlayingInfos.duration.inSeconds,
+          center: IconButton(
+            iconSize: screenwidth / 8,
+            color: Colors.black,
+            icon: Icon(
+              realtimePlayingInfos.isPlaying
+                  ? Icons.pause_rounded
+                  : Icons.play_arrow_rounded,
+            ),
+            onPressed: () {
+              audioPlayer.playOrPause();
+            },
+          ),
+        ),
+      ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [],
-            ),
-          ),
-          loadAsset(),
-        ],
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/img7.jpg'), fit: BoxFit.cover),
+        ),
+        alignment: Alignment.center,
+        child: audioPlayer.builderRealtimePlayingInfos(
+            builder: (context, realtimePlayingInfos) {
+          if (realtimePlayingInfos != null) {
+            return circularAudioPalyer(
+                realtimePlayingInfos, MediaQuery.of(context).size.width);
+          } else {
+            return Container();
+          }
+        }),
       ),
     );
   }

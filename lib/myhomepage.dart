@@ -1,9 +1,9 @@
-import 'dart:convert';
 import 'package:audio_player/mytabs.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:audio_player/app_colors.dart' as AppColors;
 import 'package:flutter/material.dart';
-import 'package:audio_player/mytabs.dart';
+import 'package:audio_player/data.dart' as Data;
+
+import 'audio_file.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -14,26 +14,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
-  List<String> imgQuote = [
-    "assets/images/quoteimg1.jpg",
-    "assets/images/quoteimg2.jpg",
-    "assets/images/quoteimg3.jpg"
-  ];
-
-  List<String> quotes = [
-    "Breathing & meditation uplift the spirit and bring clarity and strength to the mind.",
-    "When there is no regret of the past, no want of the future, that moment is whole & complete. Meditation is living every moment totally with depth.",
-    "Be simple, natural and wise. In meditation, you can expand your consciousness."
-  ];
-
-  List<String> imagetabBarView1 = ["Ustrasana", "Matyaasana", "Dhanurasana"];
-
-  List<String> imagetabBarView2 = ["asana1", "asana2", "asana3"];
-
-  List<String> imagetabBarView3 = ["asana1", "asana2", "asana3"];
-
-  List<String> rating = ["4.5", "3.5", "4"];
-
   late ScrollController _scrollController;
   late TabController _tabController;
 
@@ -87,31 +67,35 @@ class _MyHomePageState extends State<MyHomePage>
                 height: 180,
                 child: PageView.builder(
                     controller: PageController(viewportFraction: 0.9),
-                    itemCount: imgQuote == null ? 0 : imgQuote.length,
+                    itemCount: Data.imgQuote == null ? 0 : Data.imgQuote.length,
                     itemBuilder: (_, i) {
                       return Container(
-                        margin: const EdgeInsets.only(right: 5),
+                        margin: const EdgeInsets.only(right: 10),
                         height: 180,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              quotes[i],
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                            Container(
+                              child: Text(
+                                Data.quotes[i],
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 10, 10, 10),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
+                              color: Colors.white.withOpacity(0.5),
                             ),
                           ],
                         ),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            image: DecorationImage(
-                              image: AssetImage(imgQuote[i]),
-                              fit: BoxFit.fill,
-                            )),
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                            image: AssetImage(Data.imgQuote[i]),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
                       );
                     }),
               ),
@@ -162,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage>
                     controller: _tabController,
                     children: [
                       ListView.builder(
-                          itemCount: imagetabBarView1.length,
+                          itemCount: Data.imagetabBarView1.length,
                           itemBuilder: (_, i) {
                             return Container(
                               margin: const EdgeInsets.only(
@@ -182,6 +166,7 @@ class _MyHomePageState extends State<MyHomePage>
                                 child: Container(
                                   padding: EdgeInsets.all(8),
                                   child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Container(
                                         height: 120,
@@ -190,109 +175,30 @@ class _MyHomePageState extends State<MyHomePage>
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           image: DecorationImage(
-                                            image:
-                                                AssetImage(imagetabBarView1[i]),
+                                            image: AssetImage(
+                                                Data.imagetabBarView1[i]),
                                           ),
                                         ),
                                       ),
                                       SizedBox(width: 10),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.star,
-                                                size: 24,
-                                                color: AppColors.starColor,
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                rating[i],
-                                                style: TextStyle(
-                                                    color:
-                                                        AppColors.menu2Color),
-                                              ),
-                                            ],
-                                          ),
-                                          Text(
-                                            "BookName",
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              fontFamily: "Avenir",
-                                              fontWeight: FontWeight.bold,
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AudioPlayerAsset(
+                                                      path: Data
+                                                          .tabBarView1Audio[i]),
                                             ),
-                                          ),
-                                          Text(
-                                            "Subtitle",
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              fontFamily: "Avenir",
-                                              color: AppColors.subTitleText,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 60,
-                                            height: 20,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: AppColors.loveColor,
-                                            ),
-                                            child: Text(
-                                              "Love",
-                                              style: TextStyle(
-                                                fontSize: 15,
-                                                fontFamily: "Avenir",
-                                                fontWeight: FontWeight.bold,
-                                                color: AppColors.subTitleText,
-                                              ),
-                                            ),
-                                            alignment:
-                                                AlignmentDirectional.center,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          }),
-                      ListView.builder(
-                          itemCount: imagetabBarView2.length,
-                          itemBuilder: (_, i) {
-                            return Container(
-                              margin: const EdgeInsets.only(
-                                  left: 20, right: 20, top: 10, bottom: 10),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: AppColors.tabVarViewColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 2,
-                                      offset: Offset(0, 0),
-                                      color: Colors.grey.withOpacity(0.2),
-                                    ),
-                                  ],
-                                ),
-                                child: Container(
-                                  padding: EdgeInsets.all(8),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: 120,
-                                        width: 90,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          image: DecorationImage(
-                                            image:
-                                                AssetImage(imagetabBarView2[i]),
+                                          );
+                                        },
+                                        child: Text(
+                                          Data.tabBarView1Title[i],
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontFamily: "Avenir",
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
@@ -303,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage>
                             );
                           }),
                       ListView.builder(
-                          itemCount: imagetabBarView3.length,
+                          itemCount: Data.imagetabBarView2.length,
                           itemBuilder: (_, i) {
                             return Container(
                               margin: const EdgeInsets.only(
@@ -331,8 +237,92 @@ class _MyHomePageState extends State<MyHomePage>
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           image: DecorationImage(
-                                            image:
-                                                AssetImage(imagetabBarView3[i]),
+                                            image: AssetImage(
+                                                Data.imagetabBarView2[i]),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AudioPlayerAsset(
+                                                      path: Data
+                                                          .tabBarView2Audio[i]),
+                                            ),
+                                          );
+                                        },
+                                        child: Text(
+                                          Data.tabBarView2Title[i],
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontFamily: "Avenir",
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                      ListView.builder(
+                          itemCount: Data.imagetabBarView3.length,
+                          itemBuilder: (_, i) {
+                            return Container(
+                              margin: const EdgeInsets.only(
+                                  left: 20, right: 20, top: 10, bottom: 10),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: AppColors.tabVarViewColor,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 2,
+                                      offset: Offset(0, 0),
+                                      color: Colors.grey.withOpacity(0.2),
+                                    ),
+                                  ],
+                                ),
+                                child: Container(
+                                  padding: EdgeInsets.all(8),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 120,
+                                        width: 90,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                Data.imagetabBarView3[i]),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AudioPlayerAsset(
+                                                      path: Data
+                                                          .tabBarView3Audio[i]),
+                                            ),
+                                          );
+                                        },
+                                        child: Text(
+                                          Data.tabBarView3Title[i],
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontFamily: "Avenir",
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),

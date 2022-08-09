@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:audio_player/myhomepage.dart';
-import 'package:audio_player/detail_audio__page.dart';
 import 'package:audio_player/audio_file.dart';
 
 void main() {
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      routes: {'/': (context) => MyHomePage()},
     );
   }
 }
