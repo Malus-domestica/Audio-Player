@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Audio Reading',
+      title: 'Flutte Audio Reading',
       debugShowCheckedModeBanner: false,
       home: MindfulnessScreen(),
       // home: SreenDrawer(),
