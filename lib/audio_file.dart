@@ -20,7 +20,15 @@ class AudioPlayerAssetState extends State<AudioPlayerAsset> {
   }
 
   setupPlaylist() async {
-    await audioPlayer.open(Audio(this.widget.path), autoStart: false);
+    // await audioPlayer.open(Audio(this.widget.path), autoStart: false);
+
+    try {
+      await audioPlayer.open(
+        Audio.network(this.widget.path),
+      );
+    } catch (t) {
+      //mp3 unreachable
+    }
   }
 
   @override

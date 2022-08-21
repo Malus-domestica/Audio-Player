@@ -2,6 +2,7 @@ import 'package:audio_player/mytabs.dart';
 import 'package:audio_player/app_colors.dart' as AppColors;
 import 'package:flutter/material.dart';
 import 'package:audio_player/data.dart' as Data;
+import 'package:audio_player/new_drawer.dart';
 
 import 'audio_file.dart';
 
@@ -27,39 +28,24 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.background,
-      child: SafeArea(
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: Text(
+          "Guide to meditation",
+          style: TextStyle(
+            fontSize: 30,
+            color: Color(0xFF000000),
+          ),
+        ),
+        iconTheme: IconThemeData(color: Color(0xFF000000)),
+        backgroundColor: Color(0xFFfafafa),
+      ),
+      drawer: NavBar(),
+      body: SafeArea(
         child: Scaffold(
           body: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ImageIcon(
-                      AssetImage("assets/images/menu.png"),
-                      size: 24,
-                      color: Colors.black,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(left: 20),
-                    child: Text(
-                      "Guide to meditation",
-                      style: TextStyle(fontSize: 30),
-                    ),
-                  )
-                ],
-              ),
               SizedBox(
                 height: 20,
               ),
