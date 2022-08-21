@@ -62,17 +62,40 @@ class _MindfulnessScreenState extends State<MindfulnessScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          ListView.builder(
-              itemCount: 5,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                    leading: const Icon(Icons.list),
-                    trailing: const Text(
-                      "GFG",
-                      style: TextStyle(color: Colors.green, fontSize: 15),
-                    ),
-                    title: Text("List item $index"));
-              }),
+          SizedBox(
+            height: 30,
+          ),
+          Expanded(
+            child: SizedBox(
+              height: 100.0,
+              child: ListView.builder(
+                  itemCount: Data.mindfulnessText.length,
+                  itemBuilder: (_, i) {
+                    return ListTile(
+                      leading: CircleAvatar(
+                        child: ClipOval(
+                          child: Image.asset(
+                            'assets/images/demouser.jpeg',
+                            height: 40,
+                            width: 40,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      title: Text(Data.mindfulnessText[i]),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AudioPlayerAsset(
+                                path: Data.mindfulnessTracks[i]),
+                          ),
+                        );
+                      },
+                    );
+                  }),
+            ),
+          ),
         ],
       )),
     );

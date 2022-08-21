@@ -1,3 +1,4 @@
+//data/links for meditation page
 List<String> imgQuote = [
   "assets/images/quoteimg1.jpg",
   "assets/images/quoteimg2.jpg",
@@ -73,4 +74,32 @@ List<String> tabBarView3Audio = [
   "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/panic.mp3?alt=media&token=574056f6-1b00-41c9-a6c1-007715032a14",
   "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/rational.mp3?alt=media&token=f8d4aa2d-9510-41c5-a887-ceeaa9b35b91",
   "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/risk.mp3?alt=media&token=c1a29351-2bb2-4453-9ee1-cfe20672a80c"
+];
+
+//Data/links for mindfulness
+
+List<String> mindfulnessTracks = [
+  "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/Safe%20space%20visualisation.m4a?alt=media&token=72df8ea6-d5d5-471a-93a9-3be18b3346dd",
+  "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/02-Sitting-With-Breath-And-Body-May-2018.m4a?alt=media&token=72eda415-1773-4f64-b91d-b853d33291aa",
+  "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/04-Sitting-With-Sound-May-2018.m4a?alt=media&token=aae1c7eb-ef88-42d2-8464-3381b1a9f879",
+  "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/05Sitting-With-The-Body-and-twingesMay-2018.m4a?alt=media&token=22606c7c-5e1d-440a-91e3-602b78741a98",
+  "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/06-Sitting-With-Thoughts-May-2018.m4a?alt=media&token=ccef4f34-6514-43bc-97b1-82b1d4de7229",
+  "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/Body%20Scan%20with%20Sunlight%20Visualisation%20Practice%20-%2010.36.m4a?alt=media&token=89048d3f-1742-42fc-8d5b-1fecc023a3a3",
+  "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/gratitude%20new.m4a?alt=media&token=74acde8e-dd74-49cf-9fb2-e19530fbeb45",
+  "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/08Mountain-Meditation-Week-6.mp3?alt=media&token=4adf06ea-a145-4199-98de-381ba838436d",
+  "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/Lazy-Hammock-Meditation-Clare-McRobbie.mp3?alt=media&token=59be499d-f3b1-41f3-8afd-e47128d00280",
+  "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/Safe%20space%20visualisation.m4a?alt=media&token=72df8ea6-d5d5-471a-93a9-3be18b3346dd"
+];
+
+List<String> mindfulnessText = [
+  "Touch Meditation",
+  "Sitting with Breath ",
+  "Sitting with Sound",
+  "Sitting with Body & Twinges",
+  "Sitting with Thoughts",
+  "Body Scan with sunlight practice",
+  "Ten finger gratitude practice",
+  "Mountain Meditation",
+  "Lazy Hammock Meditation",
+  "Safe Space Visualisation Practice"
 ];
