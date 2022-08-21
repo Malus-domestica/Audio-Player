@@ -2,9 +2,7 @@ import 'package:audio_player/mytabs.dart';
 import 'package:audio_player/app_colors.dart' as AppColors;
 import 'package:flutter/material.dart';
 import 'package:audio_player/data.dart' as Data;
-import 'package:audio_player/drawer_to_screen.dart';
 import 'package:audio_player/new_drawer.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'audio_file.dart';
 

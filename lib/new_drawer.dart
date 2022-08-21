@@ -42,7 +42,6 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Color(0xFF000000),
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
