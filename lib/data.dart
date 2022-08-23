@@ -79,7 +79,7 @@ List<String> tabBarView3Audio = [
 //Data/links for mindfulness
 
 List<String> mindfulnessTracks = [
-  "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/Safe%20space%20visualisation.m4a?alt=media&token=72df8ea6-d5d5-471a-93a9-3be18b3346dd",
+  "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/Touch-Meditation-May-2018.m4a?alt=media&token=56c26dce-d31a-434f-8903-73ea32a77b51",
   "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/02-Sitting-With-Breath-And-Body-May-2018.m4a?alt=media&token=72eda415-1773-4f64-b91d-b853d33291aa",
   "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/04-Sitting-With-Sound-May-2018.m4a?alt=media&token=aae1c7eb-ef88-42d2-8464-3381b1a9f879",
   "https://firebasestorage.googleapis.com/v0/b/epione-992ee.appspot.com/o/05Sitting-With-The-Body-and-twingesMay-2018.m4a?alt=media&token=22606c7c-5e1d-440a-91e3-602b78741a98",
@@ -102,4 +102,17 @@ List<String> mindfulnessText = [
   "Mountain Meditation",
   "Lazy Hammock Meditation",
   "Safe Space Visualisation Practice"
+];
+
+List<String> mindfulnessimg = [
+  "assets/images/touchmed.jpeg",
+  "assets/images/sittingwithbreath.jpg",
+  "assets/images/sittingwithsound.jpg",
+  "assets/images/sittingwithbodyandtwinges.jpg",
+  "assets/images/sittingwiththoughts.webp",
+  "assets/images/bodyscanwithsunlight.jpeg",
+  "assets/images/tenfingermed.jpg",
+  "assets/images/mountainmed.jpg",
+  "assets/images/lazyhammochmed.jpg",
+  "assets/images/safespacevisualisationmed.jpg"
 ];

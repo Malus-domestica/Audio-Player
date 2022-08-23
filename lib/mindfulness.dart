@@ -14,7 +14,6 @@ class _MindfulnessScreenState extends State<MindfulnessScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
       appBar: AppBar(
         elevation: 0,
         title: Text(
@@ -71,27 +70,38 @@ class _MindfulnessScreenState extends State<MindfulnessScreen> {
               child: ListView.builder(
                   itemCount: Data.mindfulnessText.length,
                   itemBuilder: (_, i) {
-                    return ListTile(
-                      leading: CircleAvatar(
-                        child: ClipOval(
-                          child: Image.asset(
-                            'assets/images/demouser.jpeg',
-                            height: 40,
-                            width: 40,
-                            fit: BoxFit.cover,
+                    return Container(
+                      margin: EdgeInsets.all(10),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          child: ClipOval(
+                            child: Image.asset(
+                              Data.mindfulnessimg[i],
+                              height: 40,
+                              width: 40,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
+                        title: Text(Data.mindfulnessText[i]),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AudioPlayerAsset(
+                                  path: Data.mindfulnessTracks[i]),
+                            ),
+                          );
+                        },
                       ),
-                      title: Text(Data.mindfulnessText[i]),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AudioPlayerAsset(
-                                path: Data.mindfulnessTracks[i]),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Color(
+                            0xFFf6d6d7,
                           ),
-                        );
-                      },
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     );
                   }),
             ),
